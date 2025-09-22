@@ -1,110 +1,59 @@
 Facial_recognition
 
-This repository contains a Google Colab notebook that demonstrates a simple facial recognition system using DeepFace
-.
-
-The workflow is designed like a conference registration and check-in demo:
-
-Register delegates by uploading their photos (filenames = names).
-
-Probe faces later to verify who they are.
-
-Display results visually, with names shown in a dashboard-style output and label overlay on the face image.
-
-How to Use
-1. Open the notebook in Google Colab
+Overview
+Simple facial recognition demo in Google Colab using DeepFace.
+Register faces (filenames = names), upload a probe image, and see the predicted name with a visual overlay.
 
 Open in Colab
+Open the notebook
 
-2. Run the notebook step by step
-Cell 1 — Install dependencies
+How to Use
 
-Installs deepface, opencv-python-headless, and required libraries.
+Cell 1 – Install
+Installs deepface, opencv-python-headless, retina-face.
 
-Cell 2 — Upload registration images
+Cell 2 – Register
+Upload one or more clear face photos. Filenames should be the person’s name (e.g., meena.jpg, raju.jpg).
 
-Upload one or more face photos.
+Cell 2b – Add More (optional)
+Upload extra people later without restarting.
 
-The filename should be the person’s name (e.g., meena.jpg, raju.jpg).
+Cell 3 – Probe
+Upload the test image (e.g., probe_raju.jpg).
 
-These images are stored in the register/ folder.
+Cell 4 – Recognize
+Shows best match (or Unknown) and displays the image with a name overlay.
 
-Cell 2b — (Optional) Add more people
+Cell 5 – List
+Prints all registered names.
 
-Upload additional photos later without restarting.
+Example
 
-Useful for adding new delegates as they arrive.
+Register: meena.jpg, raju.jpg
 
-Cell 3 — Upload a probe image
+Probe: probe_raju.jpg
 
-Upload the test face (e.g., probe_raju.jpg).
-
-This simulates checking in at the booth.
-
-Cell 4 — Recognition and dashboard
-
-Compares the probe face against all registered faces.
-
-Prints whether it is a match or unknown.
-
-Shows the face image with:
-
-Title = predicted name
-
-Overlay badge on the face
-
-Cell 5 — List registered people
-
-Prints all the names currently registered.
-
-Example Flow
-
-Register meena.jpg and raju.jpg.
-
-Upload probe_raju.jpg.
-
-The dashboard will say:
-
-This picture is of: raju (distance=0.038)
-
-
-and display the photo with “raju” written on it.
-
-If no match is found (distance too high), it will say:
-
-No good match → Unknown
+Output: This picture is of: raju (distance ≈ 0.03–0.04)
 
 Requirements
 
-Python 3 (pre-installed in Colab)
+Python 3 (provided by Colab)
 
-Libraries (installed in Cell 1):
-
-deepface
-
-opencv-python-headless
-
-retina-face
+Libraries installed in Cell 1
 
 Notes
 
-Use clear, front-facing face photos.
+Use clear, front-facing photos; add 2–3 per person for better accuracy.
 
-Add 2–3 photos per person for better accuracy.
+If you add/rename images, remove any representations_*.pkl in register/ to rebuild encodings.
 
-Always delete the .pkl cache file when you add or rename images.
-
-Recognition threshold is set at 0.40 (tune 0.35–0.45 for stricter or looser matches).
+Default threshold = 0.40 (lower = stricter, higher = looser).
 
 Future Work
 
-Connect with Node-RED dashboard.
+Hook into Node-RED dashboard and MQTT to trigger devices (lock, name-tag engraver).
 
-Use MQTT to trigger IoT devices (open box, print name tags).
-
-Save recognition logs into a database (DB2, MongoDB, etc.).
+Store logs in a database (e.g., DB2).
 
 Author
-
-Meena Chand
-Email: meena.hgmd@gmail.com
+Meena Chand — meena.hgmd@gmail.com
